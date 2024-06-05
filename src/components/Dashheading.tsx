@@ -9,7 +9,7 @@ import {
 
 const Dashheading = () => {
   return (
-    <div className="w-full px-8 h-1/6 pt-6 flex items-center justify-between border-b">
+    <div className="w-full px-8 h-1/6 pt-6 flex items-center justify-between">
       <div>
         <span className="text-3xl font-subheader font-extrabold text-mysecondary">
           Welc
@@ -52,18 +52,18 @@ const Dashheading = () => {
         </div>
         <div className="">
           <Select>
-            <SelectTrigger className="rounded-none outline-none ring-offset-0 focus:ring-0 text-lg text-myaccentmain text-center">
-              <AlignJustify className="size-full" />
+            <SelectTrigger className="p-0 rounded-sm border-none  outline-none focus:ring-offset-0 focus:ring-0 text-lg text-myaccentmain text-center">
+              <AlignJustify className="size-[2rem] text-mysecondary" />
             </SelectTrigger>
             <SelectContent>
               <SelectItem
-                className="text-lg font-semibold font-mysecondary "
+                className="text-base font-semibold font-mysecondary "
                 value="Delete"
               >
                 Delete
               </SelectItem>
               <SelectItem
-                className="text-lg font-semibold font-mysecondary pr-2"
+                className="text-base font-semibold font-mysecondary pr-2"
                 value="Complete"
               >
                 Complete

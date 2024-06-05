@@ -36,7 +36,7 @@
     --myprimarytwo: #e3e0f3;
     --mysecondary: #3b3b3b;
     --myaccent2: #4800bf;
-    --myaccent: #9d89b3;
+    --myaccent: #e5f3fa;
   }
 
   .dark {
@@ -69,4 +69,8 @@
   body {
     @apply bg-myprimarytwo text-foreground;
   }
+}
+
+.no-scroll::-webkit-scrollbar {
+  display: none;
 }

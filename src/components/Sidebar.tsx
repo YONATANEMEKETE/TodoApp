@@ -2,6 +2,7 @@ import todoLogo from '../assets/todoLogo.png';
 import Navigation from './Navigation';
 import { Button } from './ui/button';
 import { Home, CirclePlus, Grip, ListCollapse } from 'lucide-react';
+import ModalInput from './ui/ModalInput';
 
 const Sidebar = () => {
   return (
@@ -43,6 +44,7 @@ const Sidebar = () => {
           Add Todo <CirclePlus className="size-6" />
         </Button>
       </div>
+      {/* <ModalInput /> */}
     </div>
   );
 };
