@@ -22,6 +22,7 @@ module.exports = {
         myprimarytwo: 'var(--myprimarytwo)',
         mysecondary: 'var(--mysecondary)',
         myaccent: 'var(--myaccent)',
+        myaccentmain: 'var(--myaccent2)',
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
