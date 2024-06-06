@@ -1,8 +1,18 @@
 import todoLogo from '../assets/todoLogo.png';
 import Navigation from './Navigation';
-import { Button } from './ui/button';
 import { Home, CirclePlus, Grip, ListCollapse } from 'lucide-react';
+import { Button } from './ui/button';
 import ModalInput from './ui/ModalInput';
+import DialogPopup from './DialogPopup';
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogHeader,
+  DialogFooter,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
 
 const Sidebar = () => {
   return (
@@ -36,13 +46,18 @@ const Sidebar = () => {
         </div>
       </div>
       <div className="w-3/4 mb-8">
-        <Button
-          size="lg"
-          className="w-full text-lg font-header font-semibol text-myprimary 
-          flex items-center justify-center gap-x-2 pl-0"
-        >
-          Add Todo <CirclePlus className="size-6" />
-        </Button>
+        <DialogPopup
+          actionButton="Add Todo"
+          trigger={
+            <Button
+              size="lg"
+              className="text-lg font-header font-semibold text-myprimary flex items-center justify-center gap-x-2 pl-0"
+            >
+              Add todo
+              <CirclePlus />
+            </Button>
+          }
+        />
       </div>
       {/* <ModalInput /> */}
     </div>

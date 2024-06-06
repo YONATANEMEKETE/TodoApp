@@ -2,6 +2,7 @@ import React from 'react';
 import { Checkbox } from './ui/checkbox';
 import { Badge } from '@/components/ui/badge';
 import { Button } from './ui/button';
+import DialogPopup from './DialogPopup';
 import {
   Select,
   SelectContent,
@@ -9,7 +10,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { AlignJustify } from 'lucide-react';
+import { AlignJustify, Pen } from 'lucide-react';
 
 type ItemProp = {
   task: string;
@@ -42,6 +43,19 @@ const TodoItem = ({ task, area }: ItemProp) => {
           >
             20, june
           </Button>
+
+          <DialogPopup
+            actionButton="Confirm"
+            trigger={
+              <Button
+                size="icon"
+                variant="secondary"
+                className="size-6 flex place-content-center text-sm rounded-s-sm"
+              >
+                <Pen className="size-4 text-mysecondary" />
+              </Button>
+            }
+          />
         </div>
 
         <Select>
@@ -49,12 +63,6 @@ const TodoItem = ({ task, area }: ItemProp) => {
             <AlignJustify className="size-[1.5rem] text-mysecondary" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem
-              className="text-base font-semibold font-mysecondary "
-              value="Edit"
-            >
-              Edit
-            </SelectItem>
             <SelectItem
               className="text-base font-semibold font-mysecondary pr-2"
               value="Complete"
