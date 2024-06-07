@@ -19,26 +19,39 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import z from 'zod';
+import useDialog from '../store/useDialog';
 
-type DialogProp = {
-  actionButton: string;
-  trigger: React.ReactNode;
-};
+// const todoSchema = z.object({
+//   task: z.string(),
+//   due: z.string(),
+//   area: z.string(),
+// });
 
-function DialogCloseButton({ actionButton, trigger }: DialogProp) {
+// type todoSchemaType = z.infer<typeof todoSchema>;
+
+// type DialogProp = {
+//   actionButton: string;
+//   trigger: React.ReactNode;
+// };
+// { actionButton, trigger }: DialogProp
+function DialogCloseButton() {
+  const { isOpen, onClose } = useDialog();
+  // const { register, handleSubmit } = useForm<todoSchemaType>({
+  //   resolver: zodResolver(todoSchema),
+  // });
+
   return (
-    <Dialog>
-      <DialogTrigger asChild className="w-full">
-        {trigger}
-      </DialogTrigger>
+    <Dialog onOpenChange={onClose} open={isOpen} defaultOpen={isOpen}>
       <DialogContent className="sm:max-w-md w-max p-8 top-[65%]">
         <DialogHeader>
           <DialogTitle className="text-lg text-mysecondary font-subheader font-semibold">
             let's Add task to your Todo
           </DialogTitle>
         </DialogHeader>
-        <div className="space-y-4 mb-4">
+        <form className="space-y-4 mb-4">
           <Input
             placeholder="Meditate"
             className="font-detail text-mysecondary font-semibold"
@@ -72,13 +85,17 @@ function DialogCloseButton({ actionButton, trigger }: DialogProp) {
             </SelectContent>
           </Select>
           <DatePicker />
-        </div>
+        </form>
         <DialogFooter className="justify-center">
-          <DialogClose asChild>
-            <Button type="button" className="font-detail rounded-sm">
-              {actionButton}
-            </Button>
-          </DialogClose>
+          {/* <DialogClose asChild> */}
+          <Button
+            onClick={onClose}
+            type="button"
+            className="font-detail rounded-sm"
+          >
+            confirm
+          </Button>
+          {/* </DialogClose> */}
         </DialogFooter>
       </DialogContent>
     </Dialog>

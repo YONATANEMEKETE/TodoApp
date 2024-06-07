@@ -13,8 +13,15 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
+import useDialog from '@/store/useDialog';
 
 const Sidebar = () => {
+  const { isOpen, onOpen } = useDialog();
+
+  const openDialog = () => {
+    onOpen();
+  };
+
   return (
     <div className=" h-full basis-1/4 rounded-lg flex flex-col justify-between items-center bg-myprimary">
       <div className="h-4/5 w-full">
@@ -46,18 +53,14 @@ const Sidebar = () => {
         </div>
       </div>
       <div className="w-3/4 mb-8">
-        <DialogPopup
-          actionButton="Add Todo"
-          trigger={
-            <Button
-              size="lg"
-              className="text-lg font-header font-semibold text-myprimary flex items-center justify-center gap-x-2 pl-0"
-            >
-              Add todo
-              <CirclePlus />
-            </Button>
-          }
-        />
+        <Button
+          onClick={openDialog}
+          size="lg"
+          className="w-full text-lg font-header font-semibold text-myprimary flex items-center justify-center gap-x-2 pl-0"
+        >
+          Add todo
+          <CirclePlus />
+        </Button>
       </div>
       {/* <ModalInput /> */}
     </div>

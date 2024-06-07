@@ -11,13 +11,21 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { AlignJustify, Pen } from 'lucide-react';
+import useDialog from '@/store/useDialog';
 
 type ItemProp = {
   task: string;
   area: string;
+  due: string;
 };
 
-const TodoItem = ({ task, area }: ItemProp) => {
+const TodoItem = ({ task, area, due }: ItemProp) => {
+  const { isOpen, onOpen } = useDialog();
+
+  const setDialog = () => {
+    onOpen();
+  };
+
   return (
     <div className="w-full h-16 bg-myprimary flex items-center justify-between px-4 rounded-md">
       <div className="flex items-center gap-x-4">
@@ -41,21 +49,17 @@ const TodoItem = ({ task, area }: ItemProp) => {
             size="sm"
             className="text-[1rem] text-mysecondary font-subheader font-semibold"
           >
-            20, june
+            {due}
           </Button>
 
-          <DialogPopup
-            actionButton="Confirm"
-            trigger={
-              <Button
-                size="icon"
-                variant="secondary"
-                className="size-6 flex place-content-center text-sm rounded-s-sm"
-              >
-                <Pen className="size-4 text-mysecondary" />
-              </Button>
-            }
-          />
+          <Button
+            onClick={setDialog}
+            size="icon"
+            variant="secondary"
+            className="size-6 flex place-content-center text-sm rounded-s-sm"
+          >
+            <Pen className="size-4 text-mysecondary" />
+          </Button>
         </div>
 
         <Select>
