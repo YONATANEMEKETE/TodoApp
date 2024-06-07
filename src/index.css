@@ -69,6 +69,13 @@
   body {
     @apply bg-myprimarytwo text-foreground;
   }
+  body {
+    background-image: url('src/assets/bg1.jpg');
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
 }
 
 .no-scroll::-webkit-scrollbar {
