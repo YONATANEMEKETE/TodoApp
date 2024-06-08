@@ -12,6 +12,7 @@ import {
 } from '@/components/ui/select';
 import { AlignJustify, Pen } from 'lucide-react';
 import useDialog from '@/store/useDialog';
+import useFormDialog from '@/store/TodoStore';
 
 type ItemProp = {
   task: string;
@@ -20,11 +21,7 @@ type ItemProp = {
 };
 
 const TodoItem = ({ task, area, due }: ItemProp) => {
-  const { isOpen, onOpen } = useDialog();
-
-  const setDialog = () => {
-    onOpen();
-  };
+  const { isOpen, onOpen } = useFormDialog();
 
   return (
     <div className="w-full h-16 bg-myprimary flex items-center justify-between px-4 rounded-md">
@@ -53,7 +50,7 @@ const TodoItem = ({ task, area, due }: ItemProp) => {
           </Button>
 
           <Button
-            onClick={setDialog}
+            onClick={onOpen}
             size="icon"
             variant="secondary"
             className="size-6 flex place-content-center text-sm rounded-s-sm"

@@ -7,7 +7,6 @@ function App() {
   return (
     <div className="App fixed inset-8 max-w-[1090px] mx-auto flex gap-6">
       <Sidebar />
-      <DialogPopup />
       <DashBoard />
     </div>
   );

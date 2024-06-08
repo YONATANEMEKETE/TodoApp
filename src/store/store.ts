@@ -2,12 +2,19 @@ import { create } from 'zustand';
 
 type EachT = {
   task: string;
-  due: string;
+  due: Date;
   area: string;
 };
 
+type Todo = {
+  task: string;
+  due: string;
+  area: string;
+  complete: boolean;
+};
+
 interface StoreTodo {
-  todos: EachT[];
+  todos: Todo[];
   addTodo: (newTodo: EachT) => void;
 }
 
@@ -25,21 +32,21 @@ const useStore = create<StoreTodo>((set) => ({
       area: 'work',
       complete: false,
     },
-    {
-      task: 'read your note before starting',
-      due: 'next',
-      area: 'work',
-      complete: false,
-    },
   ],
   addTodo: (newTodo: EachT) => {
+    const newnewTodo = newTodo;
+
+    const month = newnewTodo.due.toLocaleString('en-US', { month: 'long' });
+    const day = newnewTodo.due.toLocaleString('en-US', { day: '2-digit' });
+    const year = newnewTodo.due.getFullYear();
+
     set((store) => ({
       todos: [
         ...store.todos,
         {
-          task: newTodo.task,
-          due: newTodo.due,
-          area: newTodo.area,
+          task: newnewTodo.task,
+          due: `${month} ${day}, ${year}`,
+          area: newnewTodo.area,
           complete: false,
         },
       ],
