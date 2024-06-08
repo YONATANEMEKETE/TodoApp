@@ -3,6 +3,7 @@ import { Checkbox } from './ui/checkbox';
 import { Badge } from '@/components/ui/badge';
 import { Button } from './ui/button';
 import DialogPopup from './DialogPopup';
+import { CircleX } from 'lucide-react';
 import {
   Select,
   SelectContent,
@@ -14,6 +15,7 @@ import { AlignJustify, Pen } from 'lucide-react';
 import useDialog from '@/store/useDialog';
 import useStore from '@/store/store';
 import useFormDialog from '@/store/TodoStore';
+import { Item } from '@radix-ui/react-select';
 
 type ItemProp = {
   task: string;
@@ -23,14 +25,29 @@ type ItemProp = {
 
 const TodoItem = ({ task, area, due }: ItemProp) => {
   const { isOpen, onOpen } = useFormDialog();
-  const { todos, removeTodo } = useStore();
-  const [item, setItem] = useState('');
+  const { todos, removeTodo, toggleCompletedState } = useStore();
+  const [complete, setComplete] = useState(false);
+
+  const handleComplete = () => {
+    toggleCompletedState(task);
+    todos.map((item) => {
+      item.task === task ? setComplete(!complete) : null;
+    });
+  };
 
   return (
     <div className="w-full h-16 bg-myprimary flex items-center justify-between px-4 rounded-md">
       <div className="flex items-center gap-x-4">
-        <Checkbox className="size-6 rounded-sm" />
-        <div className="text-xl font-detail text-mysecondary font-bold">
+        <Checkbox
+          checked={complete}
+          className="size-6 rounded-sm"
+          onClick={handleComplete}
+        />
+        <div
+          className={`text-xl font-detail text-mysecondary font-bold ${
+            complete && 'line-through'
+          }`}
+        >
           {task}
         </div>
       </div>
@@ -62,26 +79,10 @@ const TodoItem = ({ task, area, due }: ItemProp) => {
           </Button> */}
         </div>
 
-        <Select>
-          <SelectTrigger className="p-0 rounded-sm border-none  outline-none focus:ring-offset-0 focus:ring-0 text-lg text-myaccentmain text-center">
-            <AlignJustify className="size-[1.5rem] text-mysecondary" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem
-              className="text-base font-semibold font-mysecondary pr-2"
-              value="Complete"
-            >
-              Complete
-            </SelectItem>
-            <SelectItem
-              onClick={() => removeTodo(task)}
-              className="text-base font-semibold font-mysecondary pr-2"
-              value="Delete"
-            >
-              Delete
-            </SelectItem>
-          </SelectContent>
-        </Select>
+        <CircleX
+          onClick={() => removeTodo(task)}
+          className="text-[1.75rem] text-mysecondary font-bold cursor-pointer"
+        />
       </div>
     </div>
   );
