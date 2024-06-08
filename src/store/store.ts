@@ -16,6 +16,7 @@ type Todo = {
 interface StoreTodo {
   todos: Todo[];
   addTodo: (newTodo: EachT) => void;
+  removeTodo: (task: string) => void;
 }
 
 const useStore = create<StoreTodo>((set) => ({
@@ -50,6 +51,12 @@ const useStore = create<StoreTodo>((set) => ({
           complete: false,
         },
       ],
+    }));
+  },
+
+  removeTodo: (task) => {
+    set((state) => ({
+      todos: state.todos.filter((todo) => todo.task !== task),
     }));
   },
 }));

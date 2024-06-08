@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Checkbox } from './ui/checkbox';
 import { Badge } from '@/components/ui/badge';
 import { Button } from './ui/button';
@@ -12,6 +12,7 @@ import {
 } from '@/components/ui/select';
 import { AlignJustify, Pen } from 'lucide-react';
 import useDialog from '@/store/useDialog';
+import useStore from '@/store/store';
 import useFormDialog from '@/store/TodoStore';
 
 type ItemProp = {
@@ -22,6 +23,8 @@ type ItemProp = {
 
 const TodoItem = ({ task, area, due }: ItemProp) => {
   const { isOpen, onOpen } = useFormDialog();
+  const { todos, removeTodo } = useStore();
+  const [item, setItem] = useState('');
 
   return (
     <div className="w-full h-16 bg-myprimary flex items-center justify-between px-4 rounded-md">
@@ -49,14 +52,14 @@ const TodoItem = ({ task, area, due }: ItemProp) => {
             {due}
           </Button>
 
-          <Button
+          {/* <Button
             onClick={onOpen}
             size="icon"
             variant="secondary"
             className="size-6 flex place-content-center text-sm rounded-s-sm"
           >
             <Pen className="size-4 text-mysecondary" />
-          </Button>
+          </Button> */}
         </div>
 
         <Select>
@@ -71,6 +74,7 @@ const TodoItem = ({ task, area, due }: ItemProp) => {
               Complete
             </SelectItem>
             <SelectItem
+              onClick={() => removeTodo(task)}
               className="text-base font-semibold font-mysecondary pr-2"
               value="Delete"
             >
